@@ -1,7 +1,16 @@
 global ft_strlen
-
 section .text
+
 ft_strlen:
-    mov rax, rdi      ; rax = premier argument (a)
-    add rax, rsi      ; rax = rax + deuxième argument (b)
-    ret               ; retourner rax
+    xor rax, rax            ; size_t rax = 0;
+    cmp byte [rdi], 0       ; if (str[0] == '\0')
+    je .end                 ; .end;
+.loop:
+    cmp byte [rdi + rax], 0 ; if (str[rax] == '\0')
+    je .end                 ; .end;
+    inc rax                 ; rax++;
+    jmp .loop               ; .loop;
+.end:
+    ret                     ; return rax;
+
+section .note.GNU-stack noalloc noexec nowrite

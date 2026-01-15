@@ -1,7 +1,7 @@
 NAME = prog
 LIBNAME = libasm.a
 MAIN = main.c
-SRCS = ft_strlen.asm #ft_strcpy.asm ft_strcmp.asm \
+SRCS = ft_strlen.asm ft_strcpy.asm #ft_strcmp.asm \
 		ft_write.asm ft_read.asm ft_strdup.asm
 
 CC = cc
