@@ -14,11 +14,11 @@ OBJECTS = $(SRCS:.asm=.o)
 %.o: %.asm
 	$(NASM) $(NASMFLAGS) $< -o $@
 
-$(LIBNAME): $(OBJECTS)
-	ar rcs $@ $(OBJECTS)
-
 $(NAME): $(LIBNAME) $(MAIN)
 	$(CC) $(CFLAGS) $(MAIN) $(LIBNAME) -o $(NAME)
+
+$(LIBNAME): $(OBJECTS)
+	ar rcs $@ $(OBJECTS)
 
 all: $(NAME)
 

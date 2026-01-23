@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <errno.h>
 
 size_t  ft_strlen(char *str);
@@ -38,11 +39,20 @@ int main() {
     read_buf[bytes_read] = '\0'; // Null-terminate the string
     printf("You read: %s", read_buf); // Expected output: You read: <input from user>
     printf("bytes_read: %ld\n", bytes_read); // Expected output: bytes_read: <number of bytes read>
+    bytes_read = ft_read(-1, read_buf, 31); // Invalid fd
+    printf("bytes_read (error case): %ld\n", bytes_read); // Expected output: bytes_read (error case): -1
+    printf("errno (error case): %d\n", errno); // Expected output: errno (error case): 9
 
-    // printf("\nTesting ft_strdup:\n");
-    // char *dup = ft_strdup("Hello, World!");
-    // printf("dup: %s\n", dup); // Expected output: dup: Hello, World!
-    // free(dup);
+    printf("\nTesting ft_strdup:\n");
+    char *dup = ft_strdup("Hello, World!");
+    printf("dup: %s\n", dup); // Expected output: dup: Hello, World!
+    free(dup);
+    char *dup_empty = ft_strdup("");
+    printf("dup_empty: '%s'\n", dup_empty); // Expected output: dup_empty: ''
+    free(dup_empty);
+    char *dup_null = ft_strdup(NULL);
+    printf("dup_null: %p\n", dup_null); // Expected output: dup_null: (nil)
+    free(dup_null);
 
     return 0;
 }
