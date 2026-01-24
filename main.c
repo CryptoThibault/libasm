@@ -8,22 +8,28 @@ char    *ft_strcpy(char *dest, const char *src);
 int     ft_strcmp(const char *s1, const char *s2);
 ssize_t  ft_write(int fd, const void *buf, size_t count);
 ssize_t  ft_read(int fd, void *buf, size_t count);
-char    *ft_strdup(const char *s1);
+char    *ft_strdup(const char *str);
 
 int main() {
     printf("Testing ft_strlen:\n");
     printf("length: %ld\n", ft_strlen("Hello, World!")); // Expected output: 13
     printf("length: %ld\n", ft_strlen("")); // Expected output: 0
+    printf("length: %ld\n", ft_strlen(NULL)); // Expected output: 0
 
     printf("\nTesting ft_strcpy:\n");
     char buf[32];
     printf("ret: %s\n", ft_strcpy(buf, "Hello, World!")); // Expected output: ret: Hello, World!
     printf("buf: %s\n", buf); // Expected output: buf: Hello, World!
+    printf("ret: %s\n", ft_strcpy(buf, "")); // Expected output: ret:
+    printf("buf: %s\n", buf); // Expected output: buf:
+    printf("ret: %s\n", ft_strcpy(buf, NULL)); // Expected output: ret: (null)
+    printf("buf: %s\n", buf); // Expected output: buf:
 
     printf("\nTesting ft_strcmp:\n");
     printf("cmp1: %d\n", ft_strcmp("abc", "abc")); // Expected output: cmp1: 0
     printf("cmp2: %d\n", ft_strcmp("abc", "abd")); // Expected output: cmp2: -1
     printf("cmp3: %d\n", ft_strcmp("abd", "abc")); // Expected output: cmp3: 1
+    printf("cmp4: %d\n", ft_strcmp("", "")); // Expected output: cmp4: 0
 
     printf("\nTesting ft_write:\n");
     const char *msg = "Hello, write!\n";
